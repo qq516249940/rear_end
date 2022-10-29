@@ -24,6 +24,10 @@ from django.urls import include, path
 from rest_framework import routers
 from restapi import views
 
+## 模板视图
+from django.views.generic import TemplateView
+
+
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
@@ -32,6 +36,7 @@ router.register(r'groups', views.GroupViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', TemplateView.as_view(template_name="index.html"), name='index'),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
